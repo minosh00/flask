@@ -7,7 +7,7 @@ from sklearn.exceptions import ConvergenceWarning
 # Suppress specific warnings
 warnings.simplefilter("ignore", ConvergenceWarning)
 
-app = Flask(__name)
+app = Flask(__name__)
 
 # Load the preprocessing objects and the trained model
 one_hot_encoder = joblib.load('one_hot_encoder.pkl')
