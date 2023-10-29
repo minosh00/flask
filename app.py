@@ -2,10 +2,12 @@ from flask import Flask, request, jsonify
 import joblib
 import pandas as pd
 import warnings
+from sklearn.exceptions import ConvergenceWarning
 
-warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
+# Suppress specific warnings
+warnings.simplefilter("ignore", ConvergenceWarning)
 
-app = Flask(__name__)
+app = Flask(__name)
 
 # Load the preprocessing objects and the trained model
 one_hot_encoder = joblib.load('one_hot_encoder.pkl')
@@ -28,7 +30,7 @@ def predict_demand():
         encoded_data = one_hot_encoder.transform(input_df[['PotSize']])
         encoded_feature_names = one_hot_encoder.get_feature_names_out(input_df[['PotSize']].columns)
 
-        numeric_columns = input_df[['Temperature', 'Humidity', 'Rainfall']]
+        numeric columns = input_df[['Temperature', 'Humidity', 'Rainfall']]
         scaled_data = min_max_scaler.transform(numeric_columns)
 
         preprocessed_data = pd.concat([pd.DataFrame(encoded_data, columns=encoded_feature_names),
