@@ -1,11 +1,6 @@
 from flask import Flask, request, jsonify
 import joblib
 import pandas as pd
-import warnings
-from sklearn.exceptions import ConvergenceWarning
-
-# Suppress specific warnings
-warnings.simplefilter("ignore", ConvergenceWarning)
 
 app = Flask(__name__)
 
