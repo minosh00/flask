@@ -30,7 +30,7 @@ def predict_demand():
         encoded_data = one_hot_encoder.transform(input_df[['PotSize']])
         encoded_feature_names = one_hot_encoder.get_feature_names_out(input_df[['PotSize']].columns)
 
-        numeric columns = input_df[['Temperature', 'Humidity', 'Rainfall']]
+        numeric_columns = input_df[['Temperature', 'Humidity', 'Rainfall']]
         scaled_data = min_max_scaler.transform(numeric_columns)
 
         preprocessed_data = pd.concat([pd.DataFrame(encoded_data, columns=encoded_feature_names),
